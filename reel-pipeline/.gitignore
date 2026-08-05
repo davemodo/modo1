@@ -1,0 +1,9 @@
+# runtime working dir (generated mockups, clips, segments, final reels)
+build/
+# node deps (install with: npm install)
+node_modules/
+# environment-specific chromium path helper
+.chrome_path
+# stray frame dirs / logs
+_frames_*/
+*.log

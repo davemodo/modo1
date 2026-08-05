@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "Modo - Process Documentation Reel v1",
+    "width": 720, "height": 1280, "fps": 30,
+    "accent": "#f5a623",
+    "total_hint": 35.0
+  },
+  "_timing_note": "Beat boundaries snapped to measured VO silence gaps (silencedetect -34dB), not word-count estimates.",
+  "beats": [
+    {"id": 1, "type": "avatar",           "start": 0.0,   "end": 5.15,  "title": null,
+     "caption": "You know that one task you just... do? You don't even think about it — you just get it done."},
+    {"id": 2, "type": "broll", "asset": "m1_freeze", "start": 5.15,  "end": 9.49,  "title": "You'd Freeze",
+     "caption": "But if someone asked you to write down exactly how, you'd freeze."},
+    {"id": 3, "type": "avatar",           "start": 9.49,  "end": 12.29, "title": "Don't Write It",
+     "caption": "Here's what actually works: don't try to write it."},
+    {"id": 4, "type": "broll", "asset": "m2_record", "start": 12.29, "end": 21.10, "title": "Just Hit Record", "split": true,
+     "caption": "Next time you're doing that task, just hit record on your phone and talk through it. First I do this, then I check this."},
+    {"id": 5, "type": "broll", "asset": "m3_ai",     "start": 21.10, "end": 26.40, "title": "Throw It Into AI", "send_pop": true,
+     "caption": "Then take that recording, drop it into AI, and say: turn this into steps."},
+    {"id": 6, "type": "broll", "asset": "m4_steps",  "start": 26.40, "end": 30.92, "title": "Documented", "reveal_pops": 5,
+     "caption": "Done. That's your whole process, documented — and you didn't write a single word."},
+    {"id": 7, "type": "avatar",           "start": 30.92, "end": 35.01, "title": "In Your Head",
+     "caption": "The knowledge was already in your head. You just never had to say it out loud."}
+  ]
+}

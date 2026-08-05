@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "Modo - One Idea, A Week of Content - Reel v1",
+    "width": 720, "height": 1280, "fps": 30,
+    "accent": "#f5a623",
+    "total_hint": 48.0
+  },
+  "_note": "Timings are word-count ESTIMATES for the muted preview. Once the real avatar VO is rendered, compose.py snaps every boundary to the measured silence gaps (same as reel #1).",
+  "beats": [
+    {"id": 1, "type": "avatar", "start": 0.0,  "end": 4.2,  "title": null,
+     "caption": "You're posting every day, and honestly, it's exhausting."},
+    {"id": 2, "type": "avatar", "start": 4.2,  "end": 10.4, "title": "One Idea, A System",
+     "caption": "But you don't need more ideas — you need one idea, and a system."},
+    {"id": 3, "type": "broll", "asset": "w1_voice",    "start": 10.4, "end": 18.9, "title": "Learn My Voice",
+     "caption": "Here's the free AI workflow — paste in your five best posts, so the AI learns how you actually sound."},
+    {"id": 4, "type": "broll", "asset": "w2_idea",     "start": 18.9, "end": 27.4, "title": "Just One Line", "send_pop": true,
+     "caption": "Then give it one idea — just one line — turn this into a week of posts, in my voice."},
+    {"id": 5, "type": "broll", "asset": "w3_week",     "start": 27.4, "end": 33.4, "title": "A Full Week", "reveal_pops": 5,
+     "caption": "Watch it generate the whole week, Monday to Friday, ready to publish."},
+    {"id": 6, "type": "broll", "asset": "w4_schedule", "start": 33.4, "end": 41.4, "title": "A Week Ahead",
+     "caption": "Last step: drop them into your scheduler — you're a week ahead, in one sitting."},
+    {"id": 7, "type": "avatar", "start": 41.4, "end": 48.0, "title": "Comment \"WEEK\"",
+     "caption": "Want the exact prompt? Comment the word WEEK and I'll send it to you."}
+  ]
+}

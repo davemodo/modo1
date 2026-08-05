@@ -1,0 +1,9 @@
+{
+  "name": "modo-reel-pipeline",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI reel generation pipeline (HeyGen avatar + animated mockups + ffmpeg composite, zero manual editing).",
+  "dependencies": {
+    "playwright": "^1.40.0"
+  }
+}
