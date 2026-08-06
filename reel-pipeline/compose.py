@@ -16,6 +16,7 @@ FONTS = ROOT / "fonts"
 CLIPS = ROOT / "build" / "broll_clips"
 TEXT_CLIPS = ROOT / "build" / "text_clips"   # kinetic text cards (no-VO visual reels)
 BRAND_SLIDES = ROOT / "build" / "brand_slides"  # full-frame brand slides (brand mode)
+MOTION_SLIDES = ROOT / "build" / "motion_slides"  # full-frame motion-graphics scenes (motion mode)
 MUSIC = ROOT / "assets" / "music_bed.wav"
 SFX = ROOT / "sfx"
 WORK = ROOT / "build" / "work"; WORK.mkdir(parents=True, exist_ok=True)
@@ -36,9 +37,12 @@ def dur(p): return float(run(["ffprobe","-v","error","-show_entries","format=dur
 
 beats = [dict(b) for b in SB["beats"]]
 BRAND = M.get("mode") == "brand"          # every beat is a full-frame brand slide
-CAPTIONS = M.get("captions", True) and not BRAND
-AUDIO = M.get("audio", True) and not BRAND
-NO_AVATAR = (BRAND or str(AVATAR).lower() in ("none", "-") or M.get("mode") == "no_avatar"
+MOTION = M.get("mode") == "motion"        # every beat is a full-frame motion-graphics scene
+SLIDES = BRAND or MOTION                  # all beats come from a pre-rendered full-frame clip dir
+SLIDES_DIR = BRAND_SLIDES if BRAND else MOTION_SLIDES
+CAPTIONS = M.get("captions", True) and not SLIDES
+AUDIO = M.get("audio", True) and not SLIDES
+NO_AVATAR = (SLIDES or str(AVATAR).lower() in ("none", "-") or M.get("mode") == "no_avatar"
              or not any(b["type"] == "avatar" for b in beats))
 if NO_AVATAR:
     # Fully visual reel: no talking head, no VO. Beat timings are authored as-is.
@@ -52,12 +56,12 @@ else:
     print(f"voiceover={real:.2f}s scale={k:.3f}")
 
 # ---------- shot plan (drives the video track + cut list) ----------
-FADE = 0.0 if BRAND else 0.08   # brand is a light bg -> hard cuts (fade-to-black would flash)
+FADE = 0.0 if SLIDES else 0.08   # slide modes bake their own in/out fades -> hard cuts
 shots, cuts = [], []
 for b in beats:
     length = b["end"] - b["start"]
-    if BRAND:
-        shots.append({"kind":"clip","src":BRAND_SLIDES / f"{b['id']}.mp4","in":0.0,"len":length,"zoom":1.0,"yf":0.5})
+    if SLIDES:
+        shots.append({"kind":"clip","src":SLIDES_DIR / f"{b['id']}.mp4","in":0.0,"len":length,"zoom":1.0,"yf":0.5})
     elif b["type"] == "avatar":
         shots.append({"kind":"avatar","in":b["start"],"len":length,"push":True})
     elif b["type"] == "text":

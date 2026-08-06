@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "title": "Modo - The 2 Types of Labor - MOTION (no text, no brand)",
+    "width": 720, "height": 1280, "fps": 30,
+    "mode": "motion",
+    "captions": false,
+    "audio": false,
+    "total_hint": 42.5
+  },
+  "_note": "Pure motion-graphics version: no text, no brand. Each scene is an abstract animation that embodies the beat. Cinematic dark palette, coral accent + mint counter-tone.",
+  "beats": [
+    {"id": 1, "scene": "gears",    "start": 0.0,  "end": 4.0},
+    {"id": 2, "scene": "tower",    "start": 4.0,  "end": 7.6},
+    {"id": 3, "scene": "gem",      "start": 7.6,  "end": 11.2},
+    {"id": 4, "scene": "progress", "start": 11.2, "end": 15.0},
+    {"id": 5, "scene": "seesaw",   "start": 15.0, "end": 21.2},
+    {"id": 6, "scene": "loop",     "start": 21.2, "end": 28.2},
+    {"id": 7, "scene": "eyes",     "start": 28.2, "end": 32.2},
+    {"id": 8, "scene": "wave",     "start": 32.2, "end": 36.6},
+    {"id": 9, "scene": "reps",     "start": 36.6, "end": 42.5}
+  ]
+}
