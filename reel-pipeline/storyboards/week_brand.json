@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "title": "Modo - One Idea, A Week of Content - GLOBALMODO BRAND (silent)",
+    "width": 720, "height": 1280, "fps": 30,
+    "mode": "brand",
+    "captions": false,
+    "audio": false,
+    "brand": {
+      "bg": "#FAFAF7", "ink": "#0E0E0C", "muted": "#5C5B57", "hairline": "#E6E3DB",
+      "green": "#1F3A2E", "amber": "#D4891A", "white": "#FFFFFF",
+      "green_light": "#EEF4F1", "amber_light": "#FFF8EE"
+    },
+    "total_hint": 34.5
+  },
+  "_note": "Globalmodo brand style: warm off-white bg, Fraunces + Inter, one amber accent per slide, eyebrow rules, G-mark. No captions, no sound. Amber emphasis marked with [brackets] in text.",
+  "beats": [
+    {"id": 1, "type": "text", "start": 0.0,  "end": 3.4,  "kicker": null,
+     "text": "Posting every day\nis [exhausting]."},
+    {"id": 2, "type": "text", "start": 3.4,  "end": 7.6,  "kicker": "THE FIX",
+     "text": "You don't need more ideas.\nYou need [one] — and a system."},
+    {"id": 3, "type": "broll", "asset": "w1_voice",    "start": 7.6,  "end": 13.4, "step": "STEP 01", "title": "It learns your [voice]"},
+    {"id": 4, "type": "broll", "asset": "w2_idea",     "start": 13.4, "end": 18.4, "step": "STEP 02", "title": "Give it [one] idea"},
+    {"id": 5, "type": "broll", "asset": "w3_week",     "start": 18.4, "end": 24.0, "step": "STEP 03", "title": "A [full week], written"},
+    {"id": 6, "type": "broll", "asset": "w4_schedule", "start": 24.0, "end": 29.0, "step": "STEP 04", "title": "A [week] ahead"},
+    {"id": 7, "type": "text", "start": 29.0, "end": 34.5, "kicker": "THE PAYOFF",
+     "text": "One idea in.\nA [week] of content out.", "cta": "Comment “WEEK” for the prompt"}
+  ]
+}
