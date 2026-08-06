@@ -7,3 +7,4 @@ node_modules/
 # stray frame dirs / logs
 _frames_*/
 *.log
+qc/

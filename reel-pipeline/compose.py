@@ -14,6 +14,7 @@ import json, subprocess, sys, pathlib
 ROOT = pathlib.Path(__file__).parent
 FONTS = ROOT / "fonts"
 CLIPS = ROOT / "build" / "broll_clips"
+TEXT_CLIPS = ROOT / "build" / "text_clips"   # kinetic text cards (no-VO visual reels)
 MUSIC = ROOT / "assets" / "music_bed.wav"
 SFX = ROOT / "sfx"
 WORK = ROOT / "build" / "work"; WORK.mkdir(parents=True, exist_ok=True)
@@ -32,12 +33,19 @@ def run(cmd):
 
 def dur(p): return float(run(["ffprobe","-v","error","-show_entries","format=duration","-of","csv=p=0",str(p)]).strip())
 
-real = dur(AVATAR)
 beats = [dict(b) for b in SB["beats"]]
-k = real / beats[-1]["end"]
-for b in beats: b["start"] *= k; b["end"] *= k
-beats[-1]["end"] = real
-print(f"voiceover={real:.2f}s scale={k:.3f}")
+NO_AVATAR = (str(AVATAR).lower() in ("none", "-") or M.get("mode") == "no_avatar"
+             or not any(b["type"] == "avatar" for b in beats))
+if NO_AVATAR:
+    # Fully visual reel: no talking head, no VO. Beat timings are authored as-is.
+    real = beats[-1]["end"]
+    print(f"visual reel (no avatar/VO)  total={real:.2f}s")
+else:
+    real = dur(AVATAR)
+    k = real / beats[-1]["end"]
+    for b in beats: b["start"] *= k; b["end"] *= k
+    beats[-1]["end"] = real
+    print(f"voiceover={real:.2f}s scale={k:.3f}")
 
 # ---------- shot plan (drives the video track + cut list) ----------
 FADE = 0.08
@@ -46,6 +54,8 @@ for b in beats:
     length = b["end"] - b["start"]
     if b["type"] == "avatar":
         shots.append({"kind":"avatar","in":b["start"],"len":length,"push":True})
+    elif b["type"] == "text":
+        shots.append({"kind":"clip","src":TEXT_CLIPS / f"t{b['id']}.mp4","in":0.0,"len":length,"zoom":1.0,"yf":0.5})
     else:
         clip = CLIPS / f"{b['asset']}.mp4"
         # pacing: split a long beat (flag it with "split": true) into wide -> zoomed sub-shots
@@ -115,10 +125,14 @@ Style: Cap,Montserrat,44,&H00FFFFFF,&H00FFFFFF,&H00101010,&H90101010,-1,0,0,0,10
 """
 ev=["[Events]","Format: Layer, Start, End, Style, MarginL, MarginR, MarginV, Effect, Text"]
 for b in beats:
+    if b["type"] == "text":
+        continue  # kinetic text card carries its own words (kicker + statement + CTA)
     if b.get("title"):
         ev.append(f"Dialogue: 0,{ts(b['start']+0.05)},{ts(b['end'])},Title,0,0,0,,{{\\fad(280,240)}}{b['title']}")
-    cs=chunks(b["caption"],2)
-    if cs:
+    cap = b.get("caption")
+    if cap:
+        # in a no-VO reel there's nothing to lip-sync to, so use calmer 3-word chunks
+        cs = chunks(cap, 3 if NO_AVATAR else 2)
         span=(b["end"]-b["start"])/len(cs)
         for i,c in enumerate(cs):
             st=b["start"]+i*span
@@ -158,7 +172,7 @@ run(["ffmpeg","-y","-hide_banner","-loglevel","error","-i",str(video_track),
      "-vf",f"subtitles={subs}:fontsdir={fdir}","-an",
      "-c:v","libx264","-pix_fmt","yuv420p","-preset","veryfast","-crf","20","-r",str(FPS),str(vsub)])
 
-have_a=bool(run(["ffprobe","-v","error","-select_streams","a","-show_entries","stream=codec_type","-of","csv=p=0",str(AVATAR)]).strip())
+have_a=(not NO_AVATAR) and bool(run(["ffprobe","-v","error","-select_streams","a","-show_entries","stream=codec_type","-of","csv=p=0",str(AVATAR)]).strip())
 mixaudio=WORK/"mixaudio.wav"
 if have_a:
     fc=("[1:a]aformat=sample_rates=44100:channel_layouts=stereo,volume=1.0[vo];"
@@ -167,8 +181,8 @@ if have_a:
         "[vo][mus][sfx]amix=inputs=3:duration=first:dropout_transition=0,loudnorm=I=-14:TP=-1.5:LRA=11[a]")
     ain=["-i",str(MUSIC),"-i",str(AVATAR),"-i",str(sfx_bed)]
 else:
-    fc=("[0:a]volume=0.5[mus];[2:a]volume=0.6[sfx];[mus][sfx]amix=inputs=2,loudnorm=I=-16:TP=-1.5[a]")
-    ain=["-i",str(MUSIC),"-i",str(MUSIC),"-i",str(sfx_bed)]
+    fc=("[0:a]volume=0.5[mus];[2:a]volume=0.6[sfx];[mus][sfx]amix=inputs=2:duration=longest,loudnorm=I=-15:TP=-1.5[a]")
+    ain=["-stream_loop","-1","-i",str(MUSIC),"-i",str(MUSIC),"-i",str(sfx_bed)]
 run(["ffmpeg","-y","-hide_banner","-loglevel","error",*ain,"-filter_complex",fc,"-map","[a]","-t",str(real),str(mixaudio)])
 
 run(["ffmpeg","-y","-hide_banner","-loglevel","error","-i",str(vsub),"-i",str(mixaudio),

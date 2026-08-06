@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "title": "Modo - One Idea, A Week of Content - VISUAL (no VO)",
+    "width": 720, "height": 1280, "fps": 30,
+    "accent": "#f5a623",
+    "mode": "no_avatar",
+    "total_hint": 34.5
+  },
+  "_note": "Fully visual reel: no talking head, no voiceover. Text carried by kinetic text cards + animated mockups + music/SFX. Timings are authored for readable on-screen pacing (no VO to snap to).",
+  "beats": [
+    {"id": 1, "type": "text", "start": 0.0,  "end": 3.2,
+     "kicker": null, "text": "Posting every day\nis exhausting."},
+    {"id": 2, "type": "text", "start": 3.2,  "end": 7.2,
+     "kicker": "THE FIX", "text": "You don't need more ideas.\nYou need one — and a system."},
+    {"id": 3, "type": "broll", "asset": "w1_voice",    "start": 7.2,  "end": 13.2, "title": "Learn Your Voice",
+     "caption": "Paste your 5 best posts — the AI learns how you sound"},
+    {"id": 4, "type": "broll", "asset": "w2_idea",     "start": 13.2, "end": 18.2, "title": "Just One Line", "send_pop": true,
+     "caption": "Then give it a single idea"},
+    {"id": 5, "type": "broll", "asset": "w3_week",     "start": 18.2, "end": 23.7, "title": "A Full Week", "reveal_pops": 5,
+     "caption": "It writes Monday to Friday, ready to post"},
+    {"id": 6, "type": "broll", "asset": "w4_schedule", "start": 23.7, "end": 28.7, "title": "A Week Ahead",
+     "caption": "Drop them straight into your scheduler"},
+    {"id": 7, "type": "text", "start": 28.7, "end": 34.5,
+     "kicker": null, "text": "One idea in.\nA week of content out.", "cta": "Comment “WEEK” for the prompt"}
+  ]
+}
