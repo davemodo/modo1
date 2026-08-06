@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "title": "Modo - The 2 Types of Labor - MOTION + captions",
+    "width": 720, "height": 1280, "fps": 30,
+    "mode": "motion",
+    "captions": true,
+    "audio": false,
+    "caption_marginv": 160,
+    "total_hint": 42.5
+  },
+  "_note": "Captioned variant of the pure motion reel: same scenes/timings, script lines burned as word-by-word captions low in frame (clears the centered animation).",
+  "beats": [
+    {"id": 1, "scene": "gears",    "start": 0.0,  "end": 4.0,  "caption": "Two types of labor disguise themselves as work."},
+    {"id": 2, "scene": "tower",    "start": 4.0,  "end": 7.6,  "caption": "Building something no one asked for."},
+    {"id": 3, "scene": "gem",      "start": 7.6,  "end": 11.2, "caption": "Perfecting something no one will see."},
+    {"id": 4, "scene": "progress", "start": 11.2, "end": 15.0, "caption": "Both feel like progress. Neither is."},
+    {"id": 5, "scene": "seesaw",   "start": 15.0, "end": 21.2, "caption": "Product and marketing aren't a split — they're a seesaw."},
+    {"id": 6, "scene": "loop",     "start": 21.2, "end": 28.2, "caption": "Flip the order: market and sell before you build."},
+    {"id": 7, "scene": "eyes",     "start": 28.2, "end": 32.2, "caption": "The market gets a vote. And that feels scary."},
+    {"id": 8, "scene": "wave",     "start": 32.2, "end": 36.6, "caption": "But the verdict isn't the enemy. The silence is."},
+    {"id": 9, "scene": "reps",     "start": 36.6, "end": 42.5, "caption": "Construct it. Ship it. Take the reps. It's a game of doing."}
+  ]
+}

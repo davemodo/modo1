@@ -40,7 +40,7 @@ BRAND = M.get("mode") == "brand"          # every beat is a full-frame brand sli
 MOTION = M.get("mode") == "motion"        # every beat is a full-frame motion-graphics scene
 SLIDES = BRAND or MOTION                  # all beats come from a pre-rendered full-frame clip dir
 SLIDES_DIR = BRAND_SLIDES if BRAND else MOTION_SLIDES
-CAPTIONS = M.get("captions", True) and not SLIDES
+CAPTIONS = M.get("captions", not SLIDES)   # slide modes default off, but a storyboard may opt in
 AUDIO = M.get("audio", True) and not SLIDES
 NO_AVATAR = (SLIDES or str(AVATAR).lower() in ("none", "-") or M.get("mode") == "no_avatar"
              or not any(b["type"] == "avatar" for b in beats))
@@ -119,6 +119,7 @@ if CAPTIONS:
     def chunks(text,n=2):
         w=text.replace("—","-").split(); return [" ".join(w[i:i+n]) for i in range(0,len(w),n)]
     ass = WORK/"reel.ass"
+    CAP_MV = M.get("caption_marginv", 235)   # distance of the caption pill from the bottom
     head=f"""[Script Info]
 ScriptType: v4.00+
 PlayResX: {W}
@@ -129,11 +130,11 @@ ScaledBorderAndShadow: yes
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Title,Playfair Display,58,&H00FFFFFF,&H00FFFFFF,&H64000000,&H00000000,-1,-1,0,0,100,100,0,0,1,0,4,8,60,60,150,1
-Style: Cap,Montserrat,44,&H00FFFFFF,&H00FFFFFF,&H00101010,&H90101010,-1,0,0,0,100,100,0.4,0,3,10,0,2,80,80,235,1
+Style: Cap,Montserrat,44,&H00FFFFFF,&H00FFFFFF,&H00101010,&H90101010,-1,0,0,0,100,100,0.4,0,3,10,0,2,80,80,{CAP_MV},1
 """
     ev=["[Events]","Format: Layer, Start, End, Style, MarginL, MarginR, MarginV, Effect, Text"]
     for b in beats:
-        if b["type"] == "text":
+        if b.get("type") == "text":
             continue  # kinetic text card carries its own words
         if b.get("title"):
             ev.append(f"Dialogue: 0,{ts(b['start']+0.05)},{ts(b['end'])},Title,0,0,0,,{{\\fad(280,240)}}{b['title']}")
