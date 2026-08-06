@@ -171,7 +171,52 @@ def w4(b):
                  f"ch[i].style.opacity=(p*0.92).toFixed(3);ch[i].style.transform='scale('+(0.9+0.1*p).toFixed(3)+')';}}")
     return html_doc(body, js)
 
-MOCKS={"w1_voice":w1,"w2_idea":w2,"w3_week":w3,"w4_schedule":w4}
+# ---------------- CONCEPT: seesaw (product <-> marketing) ----------------
+def c_seesaw(b):
+    body=(f"{mock_header(b)}"
+      f"<div style='margin-top:auto;margin-bottom:auto;position:relative;height:340px'>"
+      f"<div id='beam' style='position:absolute;left:50%;top:52%;width:470px;height:12px;margin-left:-235px;margin-top:-6px;transform-origin:50% 50%'>"
+        f"<div style='position:absolute;left:0;right:0;top:0;height:12px;background:{C['green']};border-radius:8px'></div>"
+        f"<div class='pchip' style='position:absolute;left:-16px;top:-72px;background:{C['green']};color:{C['bg']};font-family:Inter;font-weight:600;font-size:19px;padding:14px 22px;border-radius:8px;transform-origin:50% 120%'>Product</div>"
+        f"<div class='pchip' style='position:absolute;right:-16px;top:-72px;background:{C['amber']};color:{C['ink']};font-family:Inter;font-weight:600;font-size:19px;padding:14px 22px;border-radius:8px;transform-origin:50% 120%'>Marketing</div>"
+      f"</div>"
+      f"<div style='position:absolute;left:50%;top:calc(52% + 6px);margin-left:-30px;width:0;height:0;border-left:30px solid transparent;border-right:30px solid transparent;border-bottom:48px solid {C['green']}'></div>"
+      f"<div style='position:absolute;left:9%;right:9%;top:calc(52% + 54px);height:0.5px;background:{C['hairline']}'></div>"
+      f"</div>")
+    js=MHEAD_JS+("var a=8*Math.sin((t-0.5)*1.15);if(t<0.5)a=0;"
+                 "var bm=document.getElementById('beam');if(bm)bm.style.transform='rotate('+a.toFixed(2)+'deg)';"
+                 "var ch=document.querySelectorAll('#beam .pchip');for(var i=0;i<ch.length;i++){ch[i].style.transform='rotate('+(-a).toFixed(2)+'deg)';}")
+    return html_doc(body, js)
+
+# ---------------- CONCEPT: old way -> new way sequence ----------------
+def c_sequence(b):
+    old=["Build","Iterate","Perfect","Launch","Market","Sell"]
+    new=["Market","Sell","Build","Iterate"]
+    def chips(items, cls, arrow):
+        out=[]
+        for i,it in enumerate(items):
+            if i>0: out.append(f"<span style='color:{arrow};margin:0 7px;font-weight:600'>→</span>")
+            out.append(f"<span class='{cls}'>{it}</span>")
+        return "".join(out)
+    body=(f"{mock_header(b)}"
+      f"<div style='margin-top:auto;margin-bottom:auto;display:flex;flex-direction:column;gap:38px'>"
+      f"<div><div style='color:{C['muted']};font-size:13px;font-weight:600;letter-spacing:.14em;margin-bottom:16px'>OLD WAY</div>"
+        f"<div id='oldrow' style='position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:5px;font-size:19px'>{chips(old,'oc',C['hairline'])}"
+        f"<div id='strike' style='position:absolute;left:0;top:52%;height:2px;width:0;background:{C['muted']}'></div></div></div>"
+      f"<div><div style='color:{C['green']};font-size:13px;font-weight:600;letter-spacing:.14em;margin-bottom:16px'>NEW WAY</div>"
+        f"<div style='display:flex;flex-wrap:wrap;align-items:center;gap:5px;font-size:19px'>{chips(new,'nc',C['amber'])}</div></div>"
+      f"</div>")
+    extra=(f".oc{{color:{C['muted']};font-family:Inter;font-weight:500;padding:8px 13px;"
+           f"border:0.5px solid {C['hairline']};border-radius:6px;background:{C['white']};display:inline-block}}"
+           f".nc{{color:{C['bg']};background:{C['green']};font-family:Inter;font-weight:600;padding:9px 15px;"
+           f"border-radius:6px;display:inline-block;opacity:0;transform:translateY(8px)}}")
+    js=MHEAD_JS+("var st=document.getElementById('strike');var sp=Math.max(0,Math.min(1,(t-1.6)/0.8));"
+                 "if(st)st.style.width=(100*sp).toFixed(0)+'%';var orow=document.getElementById('oldrow');if(orow)orow.style.opacity=(1-0.55*sp).toFixed(2);"
+                 "var nc=document.querySelectorAll('.nc');for(var i=0;i<nc.length;i++){var s2=2.7+i*0.5;var p=Math.max(0,Math.min(1,(t-s2)/0.4));"
+                 "nc[i].style.opacity=p;nc[i].style.transform='translateY('+(8*(1-p)).toFixed(1)+'px)';}")
+    return html_doc(body, js, extra)
+
+MOCKS={"w1_voice":w1,"w2_idea":w2,"w3_week":w3,"w4_schedule":w4,"c_seesaw":c_seesaw,"c_sequence":c_sequence}
 manifest=[]
 for b in SB["beats"]:
     if b["type"]=="text": doc=text_slide(b)

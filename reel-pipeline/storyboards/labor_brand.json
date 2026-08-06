@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "title": "Modo - The 2 Types of Labor - GLOBALMODO BRAND (silent)",
+    "width": 720, "height": 1280, "fps": 30,
+    "mode": "brand",
+    "captions": false,
+    "audio": false,
+    "brand": {
+      "bg": "#FAFAF7", "ink": "#0E0E0C", "muted": "#5C5B57", "hairline": "#E6E3DB",
+      "green": "#1F3A2E", "amber": "#D4891A", "white": "#FFFFFF",
+      "green_light": "#EEF4F1", "amber_light": "#FFF8EE"
+    },
+    "total_hint": 42.5
+  },
+  "_note": "Adapted from the user's post 'The 2 types of labor'. Globalmodo brand, silent, no captions. Amber accent marked with [brackets].",
+  "beats": [
+    {"id": 1, "type": "text", "start": 0.0,  "end": 4.0,  "kicker": null,
+     "text": "Two types of labor\ndisguise themselves as [work]."},
+    {"id": 2, "type": "text", "start": 4.0,  "end": 7.6,  "kicker": "TYPE ONE",
+     "text": "Building something\n[no one asked for]."},
+    {"id": 3, "type": "text", "start": 7.6,  "end": 11.2, "kicker": "TYPE TWO",
+     "text": "Perfecting something\n[no one will see]."},
+    {"id": 4, "type": "text", "start": 11.2, "end": 15.0, "kicker": null,
+     "text": "Both feel like progress.\n[Neither is.]"},
+    {"id": 5, "type": "broll", "asset": "c_seesaw",   "start": 15.0, "end": 21.2, "step": "PRODUCT × MARKETING", "title": "Not a split.\nA [seesaw]."},
+    {"id": 6, "type": "broll", "asset": "c_sequence", "start": 21.2, "end": 28.2, "step": "THE SEQUENCE", "title": "Flip the [order]."},
+    {"id": 7, "type": "text", "start": 28.2, "end": 32.2, "kicker": "THE FEAR",
+     "text": "The market gets a vote.\nAnd that feels [scary]."},
+    {"id": 8, "type": "text", "start": 32.2, "end": 36.6, "kicker": null,
+     "text": "The verdict isn't the enemy.\n[The silence is.]"},
+    {"id": 9, "type": "text", "start": 36.6, "end": 42.5, "kicker": "THE ONLY WAY",
+     "text": "Construct it. Ship it.\n[Take the reps.]", "cta": "It's a game of doing"}
+  ]
+}
