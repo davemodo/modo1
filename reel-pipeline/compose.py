@@ -120,6 +120,8 @@ if CAPTIONS:
         w=text.replace("—","-").split(); return [" ".join(w[i:i+n]) for i in range(0,len(w),n)]
     ass = WORK/"reel.ass"
     CAP_MV = M.get("caption_marginv", 235)   # distance of the caption pill from the bottom
+    TITLE_COL = M.get("title_colour", "&H00FFFFFF")     # serif chapter-title fill (ASS &HAABBGGRR)
+    TITLE_OUT = M.get("title_outline", "&H64000000")    # its outline colour
     head=f"""[Script Info]
 ScriptType: v4.00+
 PlayResX: {W}
@@ -129,7 +131,7 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Title,Playfair Display,58,&H00FFFFFF,&H00FFFFFF,&H64000000,&H00000000,-1,-1,0,0,100,100,0,0,1,0,4,8,60,60,150,1
+Style: Title,Playfair Display,58,{TITLE_COL},&H00FFFFFF,{TITLE_OUT},&H00000000,-1,-1,0,0,100,100,0,0,1,2,4,8,60,60,150,1
 Style: Cap,Montserrat,44,&H00FFFFFF,&H00FFFFFF,&H00101010,&H90101010,-1,0,0,0,100,100,0.4,0,3,10,0,2,80,80,{CAP_MV},1
 """
     ev=["[Events]","Format: Layer, Start, End, Style, MarginL, MarginR, MarginV, Effect, Text"]

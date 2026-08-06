@@ -5,6 +5,8 @@
     "mode": "no_avatar",
     "captions": true,
     "audio": true,
+    "title_colour": "&H00121516",
+    "title_outline": "&H00FAF9F6",
     "total_hint": 29.5
   },
   "_note": "Original recreation of a reference reel's FORMAT (talking-head + serif chapter titles + karaoke captions + product B-roll + comment CTA + music bed). Original script and visuals; talking head is a labelled dummy placeholder image (no HeyGen).",
