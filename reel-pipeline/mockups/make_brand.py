@@ -36,6 +36,7 @@ html,body{{width:720px;height:1280px;overflow:hidden;background:{C['bg']}}}
 .eyebrow .rule{{width:0;height:2px;background:{C['amber']}}}
 .eyebrow .lbl{{font-size:15px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:{C['muted']}}}
 .h{{font-family:'Fraunces',serif;font-weight:400;color:{C['ink']};letter-spacing:-1.2px;line-height:1.08}}
+.h.gr{{color:{C['green']}}}
 .am{{color:{C['amber']}}}
 .w{{display:inline-block;opacity:0;transform:translateY(14px)}}
 .card{{background:{C['white']};border:0.5px solid {C['hairline']};border-radius:8px;box-shadow:0 18px 50px rgba(31,58,46,.06)}}
@@ -96,7 +97,7 @@ def text_slide(b):
 # ---------------- MOCKUP HEADER (shared) ----------------
 def mock_header(b):
     return (f"<div class='eyebrow'><span class='rule'></span><span class='lbl'>{H.escape(b['step'])}</span></div>"
-            f"<div class='h' style='font-size:46px;margin-top:18px'>{emph(b['title'])}</div>")
+            f"<div class='h gr' style='font-size:46px;margin-top:18px'>{emph(b['title'])}</div>")
 
 MHEAD_JS = reveal_words_js(0.45, 0.08)
 
@@ -128,7 +129,7 @@ def w2(b):
           f"<span id='idea' class='ftitle' style='font-size:28px'></span></div>"
           f"<div id='cmd' style='margin-top:24px;background:{C['amber_light']};border:1px solid {C['amber']};border-radius:6px;"
           f"padding:16px 18px;color:{C['green']};font-weight:600;font-size:17px;opacity:0'></div></div></div>")
-    js=MHEAD_JS+("""var idea="Why now is the smartest time to move.";var ni=Math.min(idea.length,Math.floor(Math.max(0,t-0.8)*17));
+    js=MHEAD_JS+("""var idea="The 3-second hook that stops the scroll.";var ni=Math.min(idea.length,Math.floor(Math.max(0,t-0.8)*17));
       document.getElementById('idea').innerHTML=idea.slice(0,ni)+((Math.floor(t*1.8)%2)&&ni<idea.length?"<span style='color:__AMBER__'>|</span>":'');
       var cmd="Turn this into a week of posts, in my voice.";var t2=t-0.8-(idea.length/17)-0.4;var el=document.getElementById('cmd');
       if(t2>0){el.style.opacity=1;var nc=Math.min(cmd.length,Math.floor(t2*24));el.textContent=cmd.slice(0,nc)+((Math.floor(t*1.8)%2)&&nc<cmd.length?'|':'');}""".replace("__AMBER__", C['amber']))
