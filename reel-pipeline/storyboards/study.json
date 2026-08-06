@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "title": "Modo - Free AI Study Tool - recreation (dummy head)",
+    "width": 720, "height": 1280, "fps": 30,
+    "mode": "no_avatar",
+    "captions": true,
+    "audio": true,
+    "total_hint": 29.5
+  },
+  "_note": "Original recreation of a reference reel's FORMAT (talking-head + serif chapter titles + karaoke captions + product B-roll + comment CTA + music bed). Original script and visuals; talking head is a labelled dummy placeholder image (no HeyGen).",
+  "beats": [
+    {"id": 1, "type": "broll", "asset": "spark",   "start": 0.0,  "end": 2.2,  "title": null,
+     "caption": "There's a free AI tool hiding in plain sight."},
+    {"id": 2, "type": "broll", "asset": "head",    "start": 2.2,  "end": 6.2,  "title": null,
+     "caption": "It turns your messiest notes into a personal tutor."},
+    {"id": 3, "type": "broll", "asset": "m_notes", "start": 6.2,  "end": 11.4, "title": "The Chaos",
+     "caption": "Dump in everything — notes, PDFs, screenshots."},
+    {"id": 4, "type": "broll", "asset": "m_ai",    "start": 11.4, "end": 16.2, "title": "One Prompt", "send_pop": true,
+     "caption": "Ask it to turn the mess into a clean study guide."},
+    {"id": 5, "type": "broll", "asset": "m_guide", "start": 16.2, "end": 21.6, "title": "Perfect Guide", "reveal_pops": 5,
+     "caption": "Structured sections and summaries, built for you."},
+    {"id": 6, "type": "broll", "asset": "m_cards", "start": 21.6, "end": 25.6, "title": "Flashcards Too",
+     "caption": "It even makes flashcards from your own material."},
+    {"id": 7, "type": "broll", "asset": "head",    "start": 25.6, "end": 29.5, "title": "Comment \"STUDY\"",
+     "caption": "Comment STUDY and I'll send you the setup."}
+  ]
+}
